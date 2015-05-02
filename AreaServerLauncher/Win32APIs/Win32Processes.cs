@@ -276,16 +276,24 @@ namespace Win32APIs
 
     public class MutexKiller
     {
-        public static Process RunProgramAndKillMutex(string ProgramPath, string MutexName)
+        public static Process RunProgramAndKillMutex(string ProgramPath, string MutexName, Boolean hideError = false)
         {
             ProcessStartInfo pStarti = new ProcessStartInfo(ProgramPath);
-            Process process = Process.Start(pStarti);
+            Process process = null;
+            if (hideError==true)
+            {
+                pStarti.UseShellExecute = false;
+                int oldMode = Win32API.SetErrorMode(3); //surpress error dialog
+                process = Process.Start(pStarti);
+                Win32API.SetErrorMode(oldMode);
+            }
+            else {process = Process.Start(pStarti);}
             try
             {
                 process.WaitForInputIdle();
                 //Get all handles for the type + oject name we want form a given process
                 List<Win32API.SYSTEM_HANDLE_INFORMATION> handles = Win32Processes.GetHandles(process, "Mutant", "\\Sessions\\1\\BaseNamedObjects\\" + MutexName);
-                Console.WriteLine(handles.Count);
+                //Console.WriteLine("Found " + handles.Count.ToString() + "handle(s)");
                 if (handles.Count == 0) throw new System.ArgumentException("NoMutex", "original");
                 foreach (Win32API.SYSTEM_HANDLE_INFORMATION handle in handles)
                 {

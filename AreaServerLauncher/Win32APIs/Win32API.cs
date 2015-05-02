@@ -41,6 +41,9 @@ namespace Win32APIs
         [DllImport("kernel32.dll")]
         public static extern IntPtr GetCurrentProcess();
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern int SetErrorMode(int wMode);
+
         public enum ObjectInformationClass : int
         {
             ObjectBasicInformation = 0,
