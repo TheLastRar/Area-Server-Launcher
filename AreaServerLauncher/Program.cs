@@ -17,7 +17,7 @@ namespace AreaServerThing
                 bool cleanExit = false;
                 do
                 {
-                    Aserver = Win32APIs.MutexKiller.RunProgramAndKillMutex("AREA SERVER.exe", "AREA SERVER", true);
+                    Aserver = Win32APIs.MutexKiller.RunProgramAndKillMutex("AREASERVER.exe", "AREA SERVER", true);
                     Console.WriteLine("Waiting untill Area Server is Closed");
                     Aserver.WaitForExit();
                     //0 = normal
@@ -36,7 +36,7 @@ namespace AreaServerThing
             }
             else
             {
-                Aserver = Win32APIs.MutexKiller.RunProgramAndKillMutex("AREA SERVER.exe", "AREA SERVER");
+                Aserver = Win32APIs.MutexKiller.RunProgramAndKillMutex("AREASERVER.exe", "AREA SERVER");
             }
             System.Threading.Thread.Sleep(1000);
             //Console.ReadKey();
