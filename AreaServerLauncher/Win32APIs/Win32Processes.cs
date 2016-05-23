@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.Text;
 
 //99% code taken from http://stackoverflow.com/questions/6808831/delete-a-mutex-from-another-process
 
@@ -292,7 +291,7 @@ namespace Win32APIs
             {
                 process.WaitForInputIdle();
                 //Get all handles for the type + oject name we want form a given process
-                List<Win32API.SYSTEM_HANDLE_INFORMATION> handles = Win32Processes.GetHandles(process, "Mutant", "\\Sessions\\1\\BaseNamedObjects\\" + MutexName);
+                List<Win32API.SYSTEM_HANDLE_INFORMATION> handles = Win32Processes.GetHandles(process, "Mutant", "\\Sessions\\" + process.SessionId + "\\BaseNamedObjects\\" + MutexName);
                 //Console.WriteLine("Found " + handles.Count.ToString() + "handle(s)");
                 if (handles.Count == 0) throw new System.ArgumentException("NoMutex", "original");
                 foreach (Win32API.SYSTEM_HANDLE_INFORMATION handle in handles)
