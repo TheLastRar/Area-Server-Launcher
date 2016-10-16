@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
 using System.Text;
 
 //code taken from http://stackoverflow.com/questions/6808831/delete-a-mutex-from-another-process

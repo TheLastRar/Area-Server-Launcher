@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.Text;
 
 namespace AreaServerThing
 {
@@ -28,11 +25,12 @@ namespace AreaServerThing
                     if (Aserver.ExitCode != 0)
                     {
                         Console.WriteLine("Detected unexpeted exit, relaunching");
-                    } else
+                    }
+                    else
                     {
                         cleanExit = true;
                     }
-                } while (cleanExit==false);
+                } while (cleanExit == false);
             }
             else
             {

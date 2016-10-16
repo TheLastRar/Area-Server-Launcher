@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 //99% code taken from http://stackoverflow.com/questions/6808831/delete-a-mutex-from-another-process
 
@@ -62,7 +62,7 @@ namespace Win32APIs
                 Marshal.FreeHGlobal(ipObjectType);
                 ipObjectType = Marshal.AllocHGlobal(nLength);
             }
-            
+
             objObjectType = (Win32API.OBJECT_TYPE_INFORMATION)Marshal.PtrToStructure(ipObjectType, objObjectType.GetType());
             //Get pointer to the object type (string) name
             if (Is64Bits())
@@ -196,7 +196,6 @@ namespace Win32APIs
             byte[] baTemp = new byte[nLength]; //Is this used?
             Marshal.Copy(ipHandlePointer, baTemp, 0, nLength);
 
-            
             long lHandleCount = 0;
             if (Is64Bits())
             {
@@ -279,14 +278,14 @@ namespace Win32APIs
         {
             ProcessStartInfo pStarti = new ProcessStartInfo(ProgramPath);
             Process process = null;
-            if (hideError==true)
+            if (hideError == true)
             {
                 pStarti.UseShellExecute = false;
                 int oldMode = Win32API.SetErrorMode(3); //surpress error dialog
                 process = Process.Start(pStarti);
                 Win32API.SetErrorMode(oldMode);
             }
-            else {process = Process.Start(pStarti);}
+            else { process = Process.Start(pStarti); }
             try
             {
                 process.WaitForInputIdle();
